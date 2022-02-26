@@ -2,6 +2,9 @@ document.getElementById('error-message').style.display = 'none';
 const searchFood = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+    // display spinner
+    document.getElementById('spinner').style.display = 'block';
+    document.getElementById('meal-details').style.display = 'none';
     console.log(searchText);
     // clear data
     searchField.value = '';
@@ -10,6 +13,7 @@ const searchFood = () => {
         document.getElementById('error-message').style.display = 'block';
         searchText.textContent = '';
         document.getElementById('search-result').innerText = '';
+        document.getElementById('spinner').style.display = 'none';
     }
     else {
         // load data
@@ -19,6 +23,7 @@ const searchFood = () => {
             .then(data => displaySearchResult(data.meals))
             .catch(error => displayError(error));
         searchText.textContent = '';
+        document.getElementById('spinner').style.display = 'block';
     }
 
 }
@@ -30,8 +35,9 @@ const displaySearchResult = meals => {
     searchResult.textContent = '';
     if (meals.length === 0) {
         document.getElementById('error').innerText = 'block';
+        document.getElementById('spinner').style.display = 'none';
     }
-    meals.forEach(meal => {
+    meals?.forEach(meal => {
         console.log(meal);
         const div = document.createElement('div');
         div.classList.add('col');
@@ -39,11 +45,14 @@ const displaySearchResult = meals => {
         <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">${meal.strMeal}</h5>
+            <p>${meal.strIngredient18 ? meal.strIngredient18 : ''}</p>
             <p class="card-text">${meal.strInstructions.slice(0, 250)}</p>
         </div>
         </div>`;
         searchResult.appendChild(div);
-    })
+    });
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('meal-details').style.display = 'block';
 }
 const loadMealDetail = mealId => {
     // console.log(mealId);
