@@ -15,11 +15,23 @@
 <body class="bg-gray">
     <section class="container mt-4">
         <h2 class="text-center text-success">Search Your Favorite Food</h2>
+        <!-- meal search area -->
         <div class="input-group mb-3 mx-auto w-50 mt-4">
             <input id="search-field" type="text" class="form-control" placeholder="Search the food you want"
                 aria-label="Recipient's username" aria-describedby="button-addon2">
             <button onclick="searchFood()" class="btn btn-outline-secondary" type="button"
                 id="button-search">Search</button>
+        </div>
+        <div>
+            <h3 id="error-message" class="text-danger text-center w-50 mx-auto mt-5 py-5 bg-white container
+                rounded-3">No data Found please Insert a food name</h3>
+        </div>
+        <!-- single meal details -->
+        <div id="meal-details" class="mx-auto w-50">
+
+        </div>
+        <!-- meal search result -->
+        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
         </div>
     </section>
     <!-- Bootstrap javascript -->
